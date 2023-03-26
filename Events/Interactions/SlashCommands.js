@@ -16,7 +16,7 @@ module.exports = {
         ephermal: true,
       });
 
-    if (command.developer && interaction.user.id !== "829868469326970900")
+    if (command.developer && interaction.user.id !== "tu ID aqui")
       return interaction.reply({
         content: "This copmmand is only available to the developer.",
         ephermal: true,
