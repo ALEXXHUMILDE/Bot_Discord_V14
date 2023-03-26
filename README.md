@@ -24,4 +24,4 @@ desinstalar un npm: npm uninstall <nombre de tu paquete>
 
 Para desinstalar un paquete, tienes que pones lo siguiente en la terminal: 
 
-     ```npm uninstall <nombre del paquete>```
+   ```npm uninstall <nombre del paquete>```
