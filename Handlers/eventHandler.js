@@ -28,4 +28,3 @@ async function loadEvents(client) {
   }
   
   module.exports = { loadEvents };
-  

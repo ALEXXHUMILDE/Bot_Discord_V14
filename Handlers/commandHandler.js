@@ -24,4 +24,3 @@ async function loadCommands(client) {
   }
   
   module.exports = { loadCommands };
-  

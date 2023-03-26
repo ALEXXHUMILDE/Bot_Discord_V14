@@ -1,7 +1,7 @@
 const { EmbedBuilder, WebhookClient } = require("discord.js");
 const { inspect } = require("util");
 const webhook = new WebhookClient({
-  url: "https://discord.com/api/webhooks/1064273367517106237/DF3rKozPC2BDd-q7R9K5BciKaAIfKxjvDccFQO18rim89XuLkYPKkYDjqwPE2ilnc7IT",
+  url: "https://discord.com/api/webhooks/1077604217113559060/Hkr6oE_2I5HNbpVZDyRvE2K7b-oq6X98nNCp3oZhoYBhrvhaPmFeYot2FvPHuFZkuZB-",
 });
 
 module.exports = (client) => {
@@ -18,7 +18,7 @@ module.exports = (client) => {
       )
       .setTimestamp();
 
-     return webhook.send({ embeds: [embed] });
+    return webhook.send({ embeds: [embed] });
   });
 
   process.on("unhandledRejection", (reason, promise) => {

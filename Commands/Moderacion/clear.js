@@ -1,54 +1,44 @@
-const {SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder} = require('discord.js');
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName("clear")
-    .setDescription("Elimina una cantidad de mensajes de un canal.")
-    .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
-    .addIntegerOption(option =>
-        option.setName('cantidad')
-        .setDescription('Cantidad de mensajes a eliminar.')
-        .setRequired(true)
-        )
-    .addUserOption(option =>
-        option.setName('usuario')
-        .setDescription('Eliminar mensajes de usuario.')
-        .setRequired(false)
-        ),
+        .setName('clear')
+        .setDescription('Borra un número especificado de mensajes.')
+        .addIntegerOption(option =>
+            option.setName('cantidad')
+                .setDescription('Cantidad de mensajes a borrar.')
+                .setRequired(true)),
     async execute(interaction) {
-        const {channel, options} = interaction;
 
-        const amount = options.getInteger('cantidad');
-        const target = options.getUser("usuario");
-
-        const messages = await channel.messages.fetch({
-            limit: amount +1,
-        });
-
-        const res = new EmbedBuilder()
-            .setColor(0x5fb041)
-        
-        if(target) {
-            let i = 0;
-            const filtered = [];
-
-            (await messages).filter((msg) =>{
-                if(msg.author.id === target.id && amount > i) {
-                    filtered.push(msg);
-                    i++;
-                }
-            });
-
-            await channel.bulkDelete(filtered).then(messages => {
-                res.setDescription(`Eliminado con exito ${messages.size} mensaje(s) de ${target}.`);
-                interaction.reply({embeds: [res], ephemeral: true });
-            });
-        } else {
-            await channel.bulkDelete(amount, true).then(messages => {
-                res.setDescription(`Eliminado con exito ${messages.size} mensaje(s) del chat.`);
-                interaction.reply({embeds: [res], ephemeral: true });
-            });
+        if (!interaction.member.permissions.has(PermissionsBitField.Flags.ManageChannels)) {
+            const embed = new EmbedBuilder()
+            .setColor("#FF0000")
+            .setTitle("Error")
+            .setDescription("<a:_:1082895947106889820> | No tienes suficientes permisos para ejecutar este comando.")
+            return await interaction.reply({ embeds: [embed], ephemeral: true });
         }
-    }
-}
- 
+
+        const cantidad = interaction.options.getInteger('cantidad');
+
+        if (cantidad < 1 || cantidad > 99) {
+            const errorEmbed = new EmbedBuilder()
+                .setColor('#FF0000')
+                .setDescription('<a:_:1082895947106889820> | ¡Solo se puede borrar de 1 a 99 mensajes!')
+            return interaction.reply({ embeds: [errorEmbed], ephemeral: true });
+        }
+
+        const messages = await interaction.channel.bulkDelete(cantidad, true);
+
+        const embed = new EmbedBuilder()
+            .setColor('Green')
+            .setDescription(`<a:_:1082896003448963172> | Se han borrado ${messages.size} mensajes del canal.`);
+
+        if (messages.size < cantidad) {
+            embed.setDescription('<a:_:1082895947106889820> | Lo siento, no puedo borrar mensajes más antiguos de 14 días.');
+            embed.setColor("#FF0000")
+        }
+
+        await interaction.reply({ embeds: [embed], ephemeral: true });
+    },
+};
