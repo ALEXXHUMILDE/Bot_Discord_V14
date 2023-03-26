@@ -4,7 +4,7 @@ BotPruebas: mongodb+srv://alexxd:Z0LoZDRLKVtZN9Uualexxd.rrxvmj8.mongodb.net/?ret
 
 desinstalar un npm: npm uninstall <nombre de tu paquete>
 
-Source Code de bot de discord, con la v14 y gratis.
+**Source Code de bot de Discord en la v14 y gratis!**
 
 ## ¿Como inicio el bot?
 
@@ -24,4 +24,4 @@ Source Code de bot de discord, con la v14 y gratis.
 
 Para desinstalar un paquete, tienes que pones lo siguiente en la terminal: 
 
-   ```npm uninstall <nombre del paquete>```
+     ```npm uninstall <nombre del paquete>```
