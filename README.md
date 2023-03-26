@@ -1,9 +1,3 @@
-Database:
-Humilde: mongodb+srv://humilde:WLij7alaPh7BEQ7z@humilde.e7io7wp.mongodb.net/humilde?retryWrites=true&w=majority
-BotPruebas: mongodb+srv://alexxd:Z0LoZDRLKVtZN9Uualexxd.rrxvmj8.mongodb.net/?retryWrites=true&w=majority
-
-desinstalar un npm: npm uninstall <nombre de tu paquete>
-
 **Source Code de bot de Discord en la v14 y gratis!**
 
 ## ¿Como inicio el bot?
@@ -25,3 +19,7 @@ desinstalar un npm: npm uninstall <nombre de tu paquete>
 Para desinstalar un paquete, tienes que pones lo siguiente en la terminal: 
 
    ```npm uninstall <nombre del paquete>```
+
+## ¿Como puedo recargar los comandos y eventos de mi bot desde Discord?
+
+Para recargar los comandos y eventos desde Discord sin la necesidad de recargarlo desde la terminal, primero, tienes que pones tu ID en **Events/Interactions/SlashCommand** y en la linea **19** donde dice **tu ID aqui**, pegas tu ID, y reinicias el bot y despues vas a Discord y usas el comando /reload commands para recargar los comandos y /reload events para recargar los eventos.
