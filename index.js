@@ -4,7 +4,6 @@ const {
   Partials,
   Collection,
 } = require("discord.js");
-const mongoose = require("mongoose")
 const config = require("./config.json")
 const { Guilds, GuildMembers, GuildMessages } = GatewayIntentBits;
 const { User, Message, GuildMember, ThreadMember } = Partials;
@@ -14,10 +13,6 @@ const client = new Client({
 });
 
 const { loadEvents } = require("./Handlers/eventHandler");
-
-//Base de Datos (MongoDB)
-const database = require("./Database/mongoose")
-database()
 
 client.config = require("./config.json");
 client.events = new Collection();
